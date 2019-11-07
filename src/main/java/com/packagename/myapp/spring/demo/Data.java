@@ -1,14 +1,15 @@
 package com.packagename.myapp.spring.demo;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
-public class IgMedia2 {
-    private Long comments_count;
-    private IgComments comments;
+public class Data {
+    private List<Post> data;
+    private IgComments.Paging paging;
 }

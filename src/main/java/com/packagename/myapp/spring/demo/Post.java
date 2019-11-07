@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class IgMedia2 {
-    private Long comments_count;
-    private IgComments comments;
+public class Post {
+    private String shortcode;
+    private Long id;
 }

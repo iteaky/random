@@ -22,10 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//                .mvcMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
-
                 .csrf().disable();
     }
 
@@ -56,11 +54,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/frontend-es5/**", "/frontend-es6/**");
     }
 
-
-    @Bean
-    public PrincipalExtractor principalExtractor() {
-        return map -> {
-            return null;
-        };
-    }
 }
