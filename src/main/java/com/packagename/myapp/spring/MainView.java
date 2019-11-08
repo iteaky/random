@@ -4,6 +4,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.dom.Style;
@@ -52,15 +53,10 @@ public class MainView extends VerticalLayout {
         AtomicInteger i = new AtomicInteger(1);
         ArrayList<Paragraph> paragraphs = new ArrayList<>();
         ArrayList<String> winners = new ArrayList<>();
+
         Button button = new Button("START", event -> {
             try {
-                if (paragraphs.size() == 3) {
-                    paragraphs.forEach(this::remove);
-                    paragraphs.clear();
-                    winners.clear();
-                    i.set(1);
-                }
-                Pair<String, String> winnerAndMassage = bean.getMessage(details, textField.getValue(), winners);
+              Pair<String, String> winnerAndMassage = bean.getMessage(details, textField.getValue(), winners);
                 Paragraph paragraph = new Paragraph(
                         i.getAndIncrement() + " Место: " + winnerAndMassage.getKey() + " Когда отметила: " + winnerAndMassage.getValue());
                 paragraphs.add(paragraph);
@@ -73,9 +69,17 @@ public class MainView extends VerticalLayout {
                 e.printStackTrace();
             }
         });
+        Button button2 = new Button("CLEAN", event -> {
+            paragraphs.forEach(this::remove);
+            paragraphs.clear();
+            winners.clear();
+            i.set(1);
+
+        });
+        HorizontalLayout horizontalLayout = new HorizontalLayout(button, button2);
         Span title2 = new Span("Вставьте ссылку на пост");
 
-        add(greeting, title2, textField, button);
+        add(greeting, title2, textField, horizontalLayout);
         setSizeFull();
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
